@@ -18,6 +18,7 @@
 -	התקנת חבילות שונות דרך npm: express, axios, ejs, mongodb 
 הקמת פרויקט npm init -y
 מריצים את הפרויקט דרך הvisual code ואז פותחים בדפדפן את כתובת localhost:3000 ונפתח הדף:
+
 הוספת לקוח חדש:
 
 
