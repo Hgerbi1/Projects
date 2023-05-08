@@ -8,3 +8,6 @@
 דוגמת הרצת משולש:
 ![twitter1](https://github.com/Hgerbi1/Projects/blob/master/ex1/twitter2.png)
 
+תרגיל 2:
+
+
