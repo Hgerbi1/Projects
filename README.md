@@ -21,4 +21,7 @@
 
 הוספת לקוח חדש:
 
+![coronaProject1](https://github.com/Hgerbi1/Projects/blob/master/ex2-1/createNew.png)
+![coronaProject2](https://github.com/Hgerbi1/Projects/blob/master/ex2-1/showData.png)
+![coronaProject3](https://github.com/Hgerbi1/Projects/blob/master/ex2-1/dbShow.png)
 
