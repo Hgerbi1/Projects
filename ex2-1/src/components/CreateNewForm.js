@@ -1,5 +1,5 @@
 import Axios from "axios"
-import React, { useState, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 function CreateNewForm(props) {
   const [name, setName] = useState("")
@@ -19,8 +19,50 @@ function CreateNewForm(props) {
   const [positiveDate, setPositiveDate] = useState("")
   const [negativeDate, setNegativeDate] = useState("")
 
+  const [isNameValid, setIsNameValid] = useState(false)
+  const [isPidValid, setIsPidValid] = useState(false)
+  const [isTelValid, setIsTelValid] = useState(false)
+  const [isPhoneValid, setIsPhoneValid] = useState(false)
+
+
   const [file, setFile] = useState("")
   const CreatePhotoField = useRef()
+
+  //name
+  useEffect(() => {
+    setIsNameValid(name.length > 0 );
+  }, [name]);
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  //pid
+  useEffect(() => {
+    setIsPidValid(pid.length > 8  && /^\d{9}$/.test(pid));
+  }, [pid]);
+
+  const handlePidChange = (event) => {
+    setPid(event.target.value);
+  };
+
+  //tel
+  useEffect(() => {
+    setIsTelValid(tel.length > 0 && /^\d{9}$/.test(tel));
+  }, [tel]);
+
+  const handleTelChange = (event) => {
+    setTel(event.target.value);
+  };
+
+  //phone
+  useEffect(() => {
+    setIsPhoneValid(phone.length > 0  && /^\d{10}$/.test(phone));
+  }, [phone]);
+
+  const handlePhoneChange = (event) => {
+    setPhone(event.target.value);
+  };
 
   async function submitHandler(e) {
     e.preventDefault()
@@ -78,8 +120,10 @@ function CreateNewForm(props) {
       <div className="mb-2 row">
         <label>פרטים אישיים:</label>
         <div className="col">
-          <input onChange={e => setName(e.target.value)} value={name} type="text" className="form-control" placeholder="שם לקוח" />
-          <input onChange={e => setPid(e.target.value)} value={pid} type="number" className="form-control" placeholder="תעודת זהות" />
+          <input onChange={handleNameChange} value={name} type="text" className="form-control" placeholder="שם לקוח" />
+          {!isNameValid && <span style={{ color: 'red' }}>הכנס שם תקני</span>}
+          <input onChange={handlePidChange} value={pid} type="number" className="form-control" placeholder="תעודת זהות" />
+          {!isPidValid && <span style={{ color: 'red' }}> הכנס ספרות בין 0-9</span>}
         </div>
         <div className="col">
           <input onChange={e => setAddress(e.target.value)} value={address} type="text" className="form-control" placeholder="כתובת " />
@@ -87,8 +131,10 @@ function CreateNewForm(props) {
         </div>
         
         <div className="col">
-          <input onChange={e => setTel(e.target.value)} value={tel} type="text" className="form-control" placeholder="טלפון " />
-          <input onChange={e => setPhone(e.target.value)} value={phone} type="text" className="form-control" placeholder=" פלאפון" />
+          <input onChange={handleTelChange} value={tel} type="text" className="form-control" placeholder="טלפון " />
+          {!isTelValid && <span style={{ color: 'red' }}> הכנס מספר טלפון תיקני</span>}
+          <input onChange={handlePhoneChange} value={phone} type="text" className="form-control" placeholder=" פלאפון" />
+          {!isPhoneValid && <span style={{ color: 'red' }}> הכנס מספר פלאפון תקני</span>}
         </div>
       </div>
         
@@ -143,7 +189,7 @@ function CreateNewForm(props) {
         </div>
       </div>
 
-      <button className="btn btn-success">צור לקוח חדש</button>
+      <button className="btn btn-success" disabled={!isNameValid || !isPidValid || !isTelValid || !isPhoneValid}>צור לקוח חדש</button>
     </form>
   )
 }
