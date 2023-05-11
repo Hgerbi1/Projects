@@ -1,1 +1,1 @@
-# Projects
+# התרגילים נמצאים תחת branch master.
